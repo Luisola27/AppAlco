@@ -91,3 +91,5 @@ project.nuget.cache
 *.EditorConfig
 *.GeneratedMSBuildEditorConfig.editorconfig
 AlcoAPI/.vs/AlcoAPI/v17/DocumentLayout.json
+AlcoAPI/.vs/AlcoAPI/v17/DocumentLayout.json
+AlcoAPI/.vs/AlcoAPI/v17/.suo
