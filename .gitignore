@@ -37,6 +37,7 @@ Thumbs.db
 !.vscode/extensions.json
 .idea
 *.suo
+.suo
 *.ntvs*
 *.njsproj
 *.sln
@@ -89,3 +90,4 @@ project.nuget.cache
 # Ignore .NET generated files
 *.EditorConfig
 *.GeneratedMSBuildEditorConfig.editorconfig
+AlcoAPI/.vs/AlcoAPI/v17/DocumentLayout.json
