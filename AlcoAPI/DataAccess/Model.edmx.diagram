@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="595f7430afd8404cbeb7d87e01125bce" Name="Diagram1">
+        <EntityTypeShape EntityType="postgresModel.category" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="postgresModel.client" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="postgresModel.guaro" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="postgresModel.Invoice" Width="1.5" PointX="6" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="postgresModel.shopping" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="postgresModel.type" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <AssociationConnector Association="postgresModel.public_guaro_category_id_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="postgresModel.public_shopping_category_id_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="postgresModel.public_client_id" ManuallyRouted="false" />
+        <AssociationConnector Association="postgresModel.public_shopping_client_id_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="postgresModel.public_guaro_type_id_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="postgresModel.public_shopping_type_id_fkey" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

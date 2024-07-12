@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="postgresModel.Store" Provider="Devart.Data.PostgreSql" ProviderManifestToken="PostgreSQL, 16.3.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="category_id" />
+    </Key>
+    <Property Name="category_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="65535" Nullable="false" />
+  </EntityType>
+  <EntityType Name="client">
+    <Key>
+      <PropertyRef Name="client_id" />
+    </Key>
+    <Property Name="client_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="code" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="guaro">
+    <Key>
+      <PropertyRef Name="guaro_id" />
+    </Key>
+    <Property Name="guaro_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="65535" />
+    <Property Name="codigo" Type="int" />
+    <Property Name="activo" Type="int" />
+    <Property Name="precio" Type="money" />
+    <Property Name="image" Type="varchar" MaxLength="65535" />
+    <Property Name="type_id" Type="int" Nullable="false" />
+    <Property Name="category_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="invoice_id" />
+    </Key>
+    <Property Name="client_id" Type="int" Nullable="false" />
+    <Property Name="invoice_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="products" Type="varchar" MaxLength="65535" Nullable="false" />
+    <Property Name="total" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="shopping">
+    <Key>
+      <PropertyRef Name="shopping_id" />
+    </Key>
+    <Property Name="shopping_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="products" Type="varchar" MaxLength="65535" />
+    <Property Name="client_id" Type="int" Nullable="false" />
+    <Property Name="category_id" Type="int" Nullable="false" />
+    <Property Name="type_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="type">
+    <Key>
+      <PropertyRef Name="type_id" />
+    </Key>
+    <Property Name="type_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="65535" Nullable="false" />
+  </EntityType>
+  <Association Name="public_client_id">
+    <End Role="client" Type="Self.client" Multiplicity="1" />
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="client">
+        <PropertyRef Name="client_id" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="client_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="public_guaro_category_id_fkey">
+    <End Role="category" Type="Self.category" Multiplicity="1" />
+    <End Role="guaro" Type="Self.guaro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category">
+        <PropertyRef Name="category_id" />
+      </Principal>
+      <Dependent Role="guaro">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="public_guaro_type_id_fkey">
+    <End Role="type" Type="Self.type" Multiplicity="1" />
+    <End Role="guaro" Type="Self.guaro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="type">
+        <PropertyRef Name="type_id" />
+      </Principal>
+      <Dependent Role="guaro">
+        <PropertyRef Name="type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="public_shopping_category_id_fkey">
+    <End Role="category" Type="Self.category" Multiplicity="1" />
+    <End Role="shopping" Type="Self.shopping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category">
+        <PropertyRef Name="category_id" />
+      </Principal>
+      <Dependent Role="shopping">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="public_shopping_client_id_fkey">
+    <End Role="client" Type="Self.client" Multiplicity="1" />
+    <End Role="shopping" Type="Self.shopping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="client">
+        <PropertyRef Name="client_id" />
+      </Principal>
+      <Dependent Role="shopping">
+        <PropertyRef Name="client_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="public_shopping_type_id_fkey">
+    <End Role="type" Type="Self.type" Multiplicity="1" />
+    <End Role="shopping" Type="Self.shopping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="type">
+        <PropertyRef Name="type_id" />
+      </Principal>
+      <Dependent Role="shopping">
+        <PropertyRef Name="type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="postgresModelStoreContainer">
+    <EntitySet Name="category" EntityType="Self.category" Schema="public" store:Type="Tables" />
+    <EntitySet Name="client" EntityType="Self.client" Schema="public" store:Type="Tables" />
+    <EntitySet Name="guaro" EntityType="Self.guaro" Schema="public" store:Type="Tables" />
+    <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="public" store:Type="Tables" />
+    <EntitySet Name="shopping" EntityType="Self.shopping" Schema="public" store:Type="Tables" />
+    <EntitySet Name="type" EntityType="Self.type" Schema="public" store:Type="Tables" />
+    <AssociationSet Name="public_client_id" Association="Self.public_client_id">
+      <End Role="client" EntitySet="client" />
+      <End Role="Invoice" EntitySet="Invoice" />
+    </AssociationSet>
+    <AssociationSet Name="public_guaro_category_id_fkey" Association="Self.public_guaro_category_id_fkey">
+      <End Role="category" EntitySet="category" />
+      <End Role="guaro" EntitySet="guaro" />
+    </AssociationSet>
+    <AssociationSet Name="public_guaro_type_id_fkey" Association="Self.public_guaro_type_id_fkey">
+      <End Role="type" EntitySet="type" />
+      <End Role="guaro" EntitySet="guaro" />
+    </AssociationSet>
+    <AssociationSet Name="public_shopping_category_id_fkey" Association="Self.public_shopping_category_id_fkey">
+      <End Role="category" EntitySet="category" />
+      <End Role="shopping" EntitySet="shopping" />
+    </AssociationSet>
+    <AssociationSet Name="public_shopping_client_id_fkey" Association="Self.public_shopping_client_id_fkey">
+      <End Role="client" EntitySet="client" />
+      <End Role="shopping" EntitySet="shopping" />
+    </AssociationSet>
+    <AssociationSet Name="public_shopping_type_id_fkey" Association="Self.public_shopping_type_id_fkey">
+      <End Role="type" EntitySet="type" />
+      <End Role="shopping" EntitySet="shopping" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

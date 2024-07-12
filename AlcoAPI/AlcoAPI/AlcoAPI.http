@@ -1,0 +1,6 @@
+@AlcoAPI_HostAddress = http://localhost:5142
+
+GET {{AlcoAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
